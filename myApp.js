@@ -1,10 +1,8 @@
-// myApp.js
-const express = require('express'); // import Express
-const app = express(); // create an Express app
+const express = require('express');
+const app = express();
 
-// Serve "Hello Express" on the root path
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.send('Hello Express');
 });
 
-// The app.listen() is already handled in server.js for testing
+module.exports = app; // important if server.js imports this
