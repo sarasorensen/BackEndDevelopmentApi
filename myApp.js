@@ -1,14 +1,10 @@
-// 1. Import Express and create the app
-const express = require('express');
-const app = express();
+// myApp.js
+const express = require('express'); // import Express
+const app = express(); // create an Express app
 
-// 2. Define the GET route at "/"
+// Serve "Hello Express" on the root path
 app.get('/', function(req, res) {
   res.send('Hello Express');
 });
 
-// 3. Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running at http://localhost:${PORT}`);
-});
+// The app.listen() is already handled in server.js for testing
