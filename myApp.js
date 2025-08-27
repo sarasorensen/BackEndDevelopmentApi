@@ -6,19 +6,20 @@ const app = express();
 app.use('/public', express.static(__dirname + '/public'));
 
 // Serve HTML file on the root path
-app.get('/', function(req, res) {
+app.get('/', (req, res) => {
   res.sendFile(__dirname + '/views/index.html');
 });
 
 // Serve JSON on /json route, applying MESSAGE_STYLE if set
-app.get('/json', function(req, res) {
+app.get('/json', (req, res) => {
   let message = 'Hello json';
   
+  // Check environment variable inside the handler
   if (process.env.MESSAGE_STYLE === 'uppercase') {
     message = message.toUpperCase();
   }
   
-  res.json({ message: message });
+  res.json({ message });
 });
 
 module.exports = app;
