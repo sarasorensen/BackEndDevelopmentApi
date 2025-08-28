@@ -35,14 +35,17 @@ app.get('/:word/echo', (req, res) => {
   res.json({ echo: word });
 });
 
-app.get('/name', (req, res) => {
-  // Grab first and last name from query parameters
-  const firstName = req.query.first;
-  const lastName = req.query.last;
-
-  // Respond with JSON
-  res.json({ name: `${firstName} ${lastName}` });
-});
+app.route('/name')
+  .get((req, res) => {
+    const first = req.query.first;
+    const last = req.query.last;
+    res.json({ name: `${first} ${last}` });
+  })
+  .post((req, res) => {
+    const first = req.body.first;
+    const last = req.body.last;
+    res.json({ name: `${first} ${last}` });
+  });
 
 
 
