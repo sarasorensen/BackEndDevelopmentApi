@@ -12,11 +12,9 @@ app.get('/', function(req, res) {
 });
 
 // Serve JSON on /json route
-app.get('/json', function(req, res) {
-  let message = 'Hello json';
-  if (process.env.MESSAGE_STYLE === 'uppercase') {
-    message = message.toUpperCase();
-  }
+app.get("/json", (req, res) => {
+  const messageStyle = process.env.MESSAGE_STYLE;
+  const message = messageStyle === "uppercase" ? "HELLO JSON" : "Hello json";
   res.json({ message });
 });
 
