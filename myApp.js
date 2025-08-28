@@ -1,6 +1,17 @@
 require('dotenv').config(); // Make sure this is at the top of your file
 const express = require('express');
 const app = express();
+const bodyParser = require('body-parser');
+// parse application/x-www-form-urlencoded
+app.use(bodyParser.urlencoded({ extended: false }));
+
+app.post('/name', (req, res) => {
+  const firstName = req.body.first;
+  const lastName = req.body.last;
+  res.json({ name: `${firstName} ${lastName}` });
+});
+
+
 
 app.use((req, res, next) => {
   console.log(`${req.method} ${req.path} - ${req.ip}`);
