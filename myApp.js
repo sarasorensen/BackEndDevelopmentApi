@@ -1,25 +1,21 @@
-// Load environment variables from .env for local development
-require('dotenv').config();
-
 const express = require('express');
 const app = express();
+require('dotenv').config();
 
 // Serve static files from /public
 app.use('/public', express.static(__dirname + '/public'));
 
-// Serve HTML on the root path
-app.get('/', (req, res) => {
+// Serve HTML file on the root path
+app.get('/', function(req, res) {
   res.sendFile(__dirname + '/views/index.html');
 });
 
-// Serve JSON on /json
-app.get('/json', (req, res) => {
-  // Read MESSAGE_STYLE inside the handler
+// Serve JSON on /json route
+app.get('/json', function(req, res) {
   let message = 'Hello json';
   if (process.env.MESSAGE_STYLE === 'uppercase') {
     message = message.toUpperCase();
   }
-
   res.json({ message });
 });
 
