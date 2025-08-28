@@ -16,6 +16,13 @@ app.get('/now', (req, res, next) => {
   res.json({ time: req.time });
 });
 
+app.get('/:word/echo', (req, res) => {
+  // Grab the route parameter from req.params
+  const word = req.params.word;
+
+  // Respond with JSON { echo: word }
+  res.json({ echo: word });
+});
 
 
 // Serve static files from /public
