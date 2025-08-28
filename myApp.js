@@ -24,6 +24,16 @@ app.get('/:word/echo', (req, res) => {
   res.json({ echo: word });
 });
 
+app.get('/name', (req, res) => {
+  // Grab first and last name from query parameters
+  const firstName = req.query.first;
+  const lastName = req.query.last;
+
+  // Respond with JSON
+  res.json({ name: `${firstName} ${lastName}` });
+});
+
+
 
 // Serve static files from /public
 app.use('/public', express.static(__dirname + '/public'));
