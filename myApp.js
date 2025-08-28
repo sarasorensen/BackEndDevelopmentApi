@@ -7,6 +7,16 @@ app.use((req, res, next) => {
   next(); // important: move to the next middleware/route
 });
 
+app.get('/now', (req, res, next) => {
+  // First middleware: add current time to req.time
+  req.time = new Date().toString();
+  next(); // pass control to the next function in the chain
+}, (req, res) => {
+  // Final handler: respond with JSON
+  res.json({ time: req.time });
+});
+
+
 
 // Serve static files from /public
 app.use('/public', express.static(__dirname + '/public'));
