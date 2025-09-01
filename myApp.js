@@ -2,17 +2,22 @@ if (process.env.NODE_ENV !== "production") {
   require("dotenv").config();
 }
 
-const mongoose = require('mongoose');
+const mongoose = require("mongoose");
 
-if (process.env.MONGO_URI) {
-  mongoose.connect(process.env.MONGO_URI.trim(), {
-    useNewUrlParser: true,
-    useUnifiedTopology: true
-  });
+const MONGO_URI = process.env.MONGO_URI;
 
-  mongoose.connection.on('connected', () => console.log('MongoDB connected'));
-  mongoose.connection.on('error', err => console.log('MongoDB connection error:', err));
-}
+mongoose.connect(MONGO_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+// For debugging/logging
+mongoose.connection.on("connected", () => {
+  console.log("✅ MongoDB connected");
+});
+mongoose.connection.on("error", (err) => {
+  console.error("❌ MongoDB connection error:", err);
+});
 
 let Person;
 
