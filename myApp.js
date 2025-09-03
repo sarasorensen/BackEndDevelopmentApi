@@ -1,7 +1,4 @@
-if (process.env.NODE_ENV !== "production") {
-  require("dotenv").config();
-}
-
+require("dotenv").config();
 const mongoose = require("mongoose");
 
 const MONGO_URI = process.env.MONGO_URI;
@@ -9,14 +6,16 @@ const MONGO_URI = process.env.MONGO_URI;
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
-});
+  serverSelectionTimeoutMS: 5000, // 5-second timeout
+})
+  .then(() => console.log("✅ MongoDB connected"))
+  .catch(err => console.error("❌ MongoDB connection error:", err));
 
-// For debugging/logging
 mongoose.connection.on("connected", () => {
-  console.log("✅ MongoDB connected");
+  console.log("Mongoose connected!");
 });
 mongoose.connection.on("error", (err) => {
-  console.error("❌ MongoDB connection error:", err);
+  console.error("Mongoose connection error:", err);
 });
 
 let Person;
