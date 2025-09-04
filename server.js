@@ -40,8 +40,8 @@ const TIMEOUT = 10000;
 app.use(bodyParser.urlencoded({ extended: "false" }));
 app.use(bodyParser.json());
 
-app.get("/", (req, res) => {
-  res.send("Server is running!");
+app.get("/", function (req, res) {
+  res.sendFile(path.join(__dirname, "views", "index.html"));
 });
 
 router.get("/file/*?", function (req, res, next) {
