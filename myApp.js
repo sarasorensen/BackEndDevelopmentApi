@@ -2,6 +2,9 @@ require("dotenv").config();
 const express = require("express");
 const mongoose = require("mongoose");
 
+const app = express();
+const PORT = process.env.PORT || 3000;
+
 const MONGO_URI = process.env.MONGO_URI;
 
 mongoose.connect(MONGO_URI, {
@@ -19,7 +22,7 @@ mongoose.connection.on("error", (err) => {
   console.error("Mongoose connection error:", err);
 });
 
-// --- Express server  ---
+// --- Express server to prevent 502 errors ---
 app.get("/", (req, res) => {
   res.send("Hello! MongoDB is connected and your app is running.");
 });
@@ -29,7 +32,6 @@ app.listen(PORT, () => {
 });
 
 // --- Mongoose Challenge Functions ---
-
 let Person;
 
 const createAndSavePerson = (done) => {
@@ -54,13 +56,11 @@ const findPersonById = (personId, done) => {
 
 const findEditThenSave = (personId, done) => {
   const foodToAdd = "hamburger";
-
   done(null /*, data*/);
 };
 
 const findAndUpdate = (personName, done) => {
   const ageToSet = 20;
-
   done(null /*, data*/);
 };
 
@@ -70,19 +70,17 @@ const removeById = (personId, done) => {
 
 const removeManyPeople = (done) => {
   const nameToRemove = "Mary";
-
   done(null /*, data*/);
 };
 
 const queryChain = (done) => {
   const foodToSearch = "burrito";
-
   done(null /*, data*/);
 };
 
 /** **Well Done !!**
 /* You completed these challenges, let's go celebrate !
- */
+*/
 
 //----- **DO NOT EDIT BELOW THIS LINE** ----------------------------------
 
