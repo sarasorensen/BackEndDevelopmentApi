@@ -1,42 +1,74 @@
-require("dotenv").config();
+require('dotenv').config();
+
 const mongoose = require("mongoose");
-
 const MONGO_URI = process.env.MONGO_URI;
-
-// Connect to MongoDB (Railway-ready: asynchronous, won't block server)
+// Connect to MongoDB
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
-  useUnifiedTopology: true,
-  serverSelectionTimeoutMS: 5000,
+  useUnifiedTopology: true
 })
   .then(() => console.log("✅ MongoDB connected"))
   .catch(err => console.error("❌ MongoDB connection error:", err));
-
 mongoose.connection.on("connected", () => console.log("Mongoose connected!"));
 mongoose.connection.on("error", (err) => console.error("Mongoose connection error:", err));
 
-// --- Define Person model ---
-const personSchema = new mongoose.Schema({
-  name: { type: String, required: true },
-  age: Number,
-  favoriteFoods: [String]
-});
 
-const Person = mongoose.models.Person || mongoose.model("Person", personSchema);
+let Person;
 
-// --- Challenge functions (stubbed for FCC) ---
-const createAndSavePerson = (done) => { done(null); };
-const createManyPeople = (arrayOfPeople, done) => { done(null); };
-const findPeopleByName = (personName, done) => { done(null); };
-const findOneByFood = (food, done) => { done(null); };
-const findPersonById = (personId, done) => { done(null); };
-const findEditThenSave = (personId, done) => { done(null); };
-const findAndUpdate = (personName, done) => { done(null); };
-const removeById = (personId, done) => { done(null); };
-const removeManyPeople = (done) => { done(null); };
-const queryChain = (done) => { done(null); };
+const createAndSavePerson = (done) => {
+  done(null /*, data*/);
+};
 
-// --- Exports for FCC ---
+const createManyPeople = (arrayOfPeople, done) => {
+  done(null /*, data*/);
+};
+
+const findPeopleByName = (personName, done) => {
+  done(null /*, data*/);
+};
+
+const findOneByFood = (food, done) => {
+  done(null /*, data*/);
+};
+
+const findPersonById = (personId, done) => {
+  done(null /*, data*/);
+};
+
+const findEditThenSave = (personId, done) => {
+  const foodToAdd = "hamburger";
+
+  done(null /*, data*/);
+};
+
+const findAndUpdate = (personName, done) => {
+  const ageToSet = 20;
+
+  done(null /*, data*/);
+};
+
+const removeById = (personId, done) => {
+  done(null /*, data*/);
+};
+
+const removeManyPeople = (done) => {
+  const nameToRemove = "Mary";
+
+  done(null /*, data*/);
+};
+
+const queryChain = (done) => {
+  const foodToSearch = "burrito";
+
+  done(null /*, data*/);
+};
+
+/** **Well Done !!**
+/* You completed these challenges, let's go celebrate !
+ */
+
+//----- **DO NOT EDIT BELOW THIS LINE** ----------------------------------
+
 exports.PersonModel = Person;
 exports.createAndSavePerson = createAndSavePerson;
 exports.findPeopleByName = findPeopleByName;
